@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <style>
+    body {
+      margin-top: 20px;
+      background-color: whitesmoke;
+    }
+
+    hr {
+      background-color: lightgray;
+    }
+
+    .authorName {
+      font-size: 2rem;
+      font-weight: 300;
+    }
+
+    .authorLink {
+      color: lightgray;
+    }
+
+    .authorLink:hover {
+      color: lightgray;
+    }
+
+    .chapterLink {
+      padding: 5px;
+    }
+
+    .jumbotron {
+      background-color: rgb(59, 76, 98);
+      color: white;
+    }
+
+    .card {
+      background-color: rgb(234, 234, 234);
+      margin-bottom: 20px;
+    }
+  </style>
+  <title>Worked SQL Examples</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-3"><em>Worked SQL Examples</em></h1>
+      <hr class="my-4">
+      <p class="authorName"><a class="authorLink" href="https://markm208.github.io/" target="_blank">Mark Mahoney</a>
+      </p>
+    </div>
+    <p class='lead'>
+      <span class='badge rounded-pill bg-secondary text-light'>NEW!</span>
+      We are still trying to make code playbacks even better.
+      We would love some feedback on the medium.
+      Can you spare a couple of minutes to <a href='https://www.surveymonkey.com/r/FKBXTC5' target='_blank'>let us know
+        what you think?</a>
+    </p>
+    <p>
+      <a class="introLink h5" data-toggle="collapse" href="#intro" role="button" aria-expanded="false"
+        aria-controls="intro">
+        Introduction
+      </a>
+    </p>
+    <div class="collapse show" id="intro">
+      <div class="card card-body">
+        <p>
+          This is a collection of 30 'worked examples' where I show the viewer how I go about writing SQL queries.
+          SQL queries are rarely written left-to-right, top-to-bottom.
+          Instead, a database developer typically <em>builds</em> their queries up from small and simple to more complex.
+          These playbacks show how my queries grow as I get closer and closer to a correct solution.
+          They also emphasize how to use an ER Diagram and schema when writing queries.
+        </p>
+        <p>
+          The database I am using describes courses taken by students in a university.
+          It is a SQLite database called <a href="studentGrades.sqlite" download>studentGrades.sqlite</a>.
+          Here are the entities and relationships:
+        </p>
+        <p>Entites:</p>
+        <ul>
+          <li>Students</li>
+          <li>Sections</li>
+          <li>Courses</li>
+          <li>Professors</li>
+          <li>Departments</li>
+        </ul>
+        <p>Relationships:</p>
+        <ul>
+          <li>Any one student takes zero or more sections (every student receives a grade).</li>
+          <li>Any one section has zero or more students taking it.</li>
+          <li>Any one section is an instance of one course.</li>
+          <li>Any one course has zero or more instances of sections.</li>
+          <li>Any one sections is taught by a single professor.</li>
+          <li>Any one professor teaches zero or more sections.</li>
+          <li>Any one professor belongs to zero or more departments.</li>
+          <li>Any one department has zero or more professors.</li>
+          <li>Any one department has zero or one professor who is the chairperson of the department.</li>
+          <li>Any one professor chairs zero or one department.</li>
+          <li>Any one course is offered by one department.</li>
+          <li>Any one department offers zero or more courses.</li>
+        </ul>
+        </p>
+        <p>
+          Here is an ER Diagram and schema describing the database:
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <img src="images/erd.jpeg" class="img" height="500px" alt="ER Diagram">
+              </div>
+              <div class="col">
+                <img src="images/schema.jpeg" class="img" height="500px" alt="Schema">
+              </div>
+            </div>
+          </div>
+        </p>
+
+        <p>
+          If you are brand new to SQL you might want to start with another one of my 'books' of code playbacks: <br />
+          <a href="https://markm208.github.io/sqlbook/" target="_blank">Database Design and SQL for Beginners</a>
+        </p>
+        <p>
+          If you would like to learn how to write programs that use a database you can read: <br />
+          <a href="https://markm208.github.io/sqlitebook/" target="_blank">Programming with SQLite</a>.
+        </p>
+        <p>
+          If you'd like to stay connected and get updates when I add new playbacks you can follow me on twitter:<a
+            href="https://twitter.com/markm208" target="_blank">@markm208</a>.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      <a class="chapterLink h5" data-toggle="collapse" href="#chapter1" role="button" aria-expanded="false"
+        aria-controls="chapter1">
+        Part 1
+      </a>
+    </p>
+    <div class="collapse show" id="chapter1">
+      <table class="table table-hover">
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="01/playback.html" target="_blank" class="playback-title">Q1: List every course name, section number, and professor name in chronological order for every section that has ever been offered.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="02/playback.html" target="_blank" class="playback-title">Q2: List every course name and section number for every course offered by the computer science department.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="03/playback.html" target="_blank" class="playback-title">Q3: Find the name of every professor who has ever taught CSCI111.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="04/playback.html" target="_blank" class="playback-title">Q4: List all of the professor names and their departments.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="05/playback.html" target="_blank" class="playback-title">Q5: List the names of the professors who have taught both CSCI111 and CSCI112.</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <a class="chapterLink h5" data-toggle="collapse" href="#chapter2" role="button" aria-expanded="false"
+        aria-controls="chapter2">
+        Part 2
+      </a>
+    </p>
+    <div class="collapse show" id="chapter2">
+      <table class="table table-hover">
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="06/playback.html" target="_blank" class="playback-title">Q6: List the names of all of the students of professor Mark Mahoney who are greater than or equal to 21 years old.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="07/playback.html" target="_blank" class="playback-title">Q7: List the names of all of the students who are taught by a department chair.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="08/playback.html" target="_blank" class="playback-title">Q8: List all of the course names and section numbers of every course ever taught by a department chair.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="09/playback.html" target="_blank" class="playback-title">Q9: List all of the courses with the oldest student.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="10/playback.html" target="_blank" class="playback-title">Q10: List all of the courses and section numbers with the youngest average student age.</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <a class="chapterLink h5" data-toggle="collapse" href="#chapter3" role="button" aria-expanded="false"
+        aria-controls="chapter3">
+        Part 3
+      </a>
+    </p>
+    <div class="collapse show" id="chapter3">
+      <table class="table table-hover">
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="11/playback.html" target="_blank" class="playback-title">Q11: List all of the course names and section numbers of courses with less than four credits.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="12/playback.html" target="_blank" class="playback-title">Q12: List all of the course names and section numbers with the smallest enrollment.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="13/playback.html" target="_blank" class="playback-title">Q13: List all of the student names who have taken more than one course with Mark Mahoney.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="14/playback.html" target="_blank" class="playback-title">Q14: List all of the student names who have taken a course with both Mark Mahoney and Eric Whendon.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="15/playback.html" target="_blank" class="playback-title">Q15: List all the course names and section numbers that had two or more students earn A's.</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <a class="chapterLink h5" data-toggle="collapse" href="#chapter4" role="button" aria-expanded="false"
+        aria-controls="chapter4">
+        Part 4
+      </a>
+    </p>
+    <div class="collapse show" id="chapter4">
+      <table class="table table-hover">
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="16/playback.html" target="_blank" class="playback-title">Q16: Find the names of all the students who have taken CSCI111.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="17/playback.html" target="_blank" class="playback-title">Q17: Find the names of all professors in the computer science department who are not chairs of a department.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="18/playback.html" target="_blank" class="playback-title">Q18: Find the names of all professors who are the chair of a department.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="19/playback.html" target="_blank" class="playback-title">Q19: Find the ssn, first and last name, course name, and grade earned for all courses taken in spring 2007.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="20/playback.html" target="_blank" class="playback-title">Q20: Find the course name and section number of all the courses that have ever been offered in the fall.</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <a class="chapterLink h5" data-toggle="collapse" href="#chapter5" role="button" aria-expanded="false"
+        aria-controls="chapter5">
+        Part 5
+      </a>
+    </p>
+    <div class="collapse show" id="chapter5">
+      <table class="table table-hover">
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="21/playback.html" target="_blank" class="playback-title">Q21: Find the names of all of the professors teaching in spring 2007.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="22/playback.html" target="_blank" class="playback-title">Q22: Find the names of all of the students who have received an A and a B in any course.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="23/playback.html" target="_blank" class="playback-title">Q23: Find out how many students have ever taken CSCI111.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="24/playback.html" target="_blank" class="playback-title">Q24: Find the average age of all students who ever had a course with Mark Mahoney.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="25/playback.html" target="_blank" class="playback-title">Q25: Find the names of all of the professors who have never taught a course.</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <a class="chapterLink h5" data-toggle="collapse" href="#chapter6" role="button" aria-expanded="false"
+        aria-controls="chapter6">
+        Part 6
+      </a>
+    </p>
+    <div class="collapse show" id="chapter6">
+      <table class="table table-hover">
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="26/playback.html" target="_blank" class="playback-title">Q26: Find the names of all of the professors of who have taught May Jones.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="27/playback.html" target="_blank" class="playback-title">Q27: Find the names of the students who have had a course in Fall 2006 or Spring 2007.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="28/playback.html" target="_blank" class="playback-title">Q28: Find the names of the students who have taken a course from a professor who has more than one appointment to a department.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="29/playback.html" target="_blank" class="playback-title">Q29: Find the average age of students who took courses in Spring 2007.</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="playbackTitleLink" href="30/playback.html" target="_blank" class="playback-title">Q30: Find the sum of all of the credit hours offered by the computer science department in 2007</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+  <!-- Default Statcounter code for Updated Clojure Book
+https://personal.carthage.edu/mmahoney/courses/CSC3210/clojure/
+-->
+  <script type="text/javascript">
+    var sc_project = 12421931;
+    var sc_invisible = 1;
+    var sc_security = "1d9b40f0"; 
+  </script>
+  <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async>
+  </script>
+  <noscript>
+    <div class="statcounter">
+      <a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter"
+          src="https://c.statcounter.com/12421931/0/1d9b40f0/1/" alt="Web Analytics">
+      </a>
+    </div>
+  </noscript>
+  <!-- End of Statcounter Code -->
+</body>
+
+</html>
